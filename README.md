@@ -132,9 +132,9 @@ CREATE INDEX idx_pedprod_codigo_produto
 
 ### 4. População de Clientes e Produtos
 
-No diretório `sql/` do projeto há o script:
+No diretório `banco/` do projeto há o script:
 
-- `popula_banco.sql`
+- `popula.sql`
 
 Exemplo do conteúdo (resumo):
 
@@ -162,7 +162,7 @@ INSERT INTO produtos (codigo, descricao, preco_venda) VALUES
 Para executar:
 
 ```sql
-SOURCE sql/popula_banco.sql;
+SOURCE banco/popula_banco.sql;
 ```
 
 ---
@@ -295,7 +295,7 @@ O `TDM` lê esse arquivo no método `ConfigurarConexao` e configura o `TFDConnec
 
 2. **Configurar o `config.ini`**:
 
-   - Copiar o arquivo de exemplo para a pasta do executável
+   - Copiar o arquivo de exemplo (pasta `/banco`) para a pasta do executável
    - Ajustar `Server`, `Database`, `Username`, `Password` e `DriverDll` conforme seu ambiente
 
 3. **Configurar o Delphi 12**:
@@ -317,4 +317,3 @@ O `TDM` lê esse arquivo no método `ConfigurarConexao` e configura o `TFDConnec
 - Apenas componentes nativos do Delphi/FireDAC são utilizados (sem componentes de terceiros).
 - As operações de banco priorizam o uso de **SQL** explícito (SELECT, INSERT, DELETE).
 - A lógica de negócio segue conceitos de POO e separação em camadas (modelo, DAO, UI).
-- Os scripts SQL e o arquivo `config.ini` devem ser incluídos na raiz do repositório (ou em uma pasta `sql/` para os scripts).

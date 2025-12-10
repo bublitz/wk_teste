@@ -7,7 +7,8 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, FireDAC.Stan.Intf,
   FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, Data.DB, Vcl.StdCtrls, Vcl.Grids,
-  Vcl.DBGrids, FireDAC.Comp.DataSet, FireDAC.Comp.Client, uModelos, uPedidoDAO;
+  Vcl.DBGrids, FireDAC.Comp.DataSet, FireDAC.Comp.Client, FireDAC.DApt,
+  uModelos, uPedidoDAO, Vcl.ExtCtrls, Vcl.Buttons;
 
 type
   TfrmMain = class(TForm)
@@ -33,6 +34,17 @@ type
     btnGravar: TButton;
     btnCancelarPedido: TButton;
     lblTotalPedido: TLabel;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Bevel1: TBevel;
+    Bevel2: TBevel;
+    SpeedButton1: TSpeedButton;
     procedure FormShow(Sender: TObject);
     procedure edtCodClienteExit(Sender: TObject);
     procedure edtCodProdutoExit(Sender: TObject);
@@ -45,6 +57,7 @@ type
     procedure edtCodClienteChange(Sender: TObject);
     procedure btnCarregarPedidoClick(Sender: TObject);
     procedure btnCancelarPedidoClick(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
   private
     { Private declarations }
     FPedido: TPedido;
@@ -94,8 +107,8 @@ begin
       Exit;
     end;
 
-    if MessageDlg('Deseja realmente cancelar o pedido ' + S + '?',
-      mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+    if Application.MessageBox(PChar('Deseja realmente cancelar o pedido ' + S + '?'),
+      'Atenção!', MB_YESNO+MB_ICONWARNING) = IDYES then
     begin
       try
         FPedidoDAO.CancelarPedido(Num);
@@ -423,6 +436,20 @@ begin
     mtItens.EnableControls;
   end;
   lblTotalPedido.Caption := FormatFloat('R$ ,0.00', Total);
+end;
+
+procedure TfrmMain.SpeedButton1Click(Sender: TObject);
+begin
+  edtCodCliente.Text := '';
+  edtNomeCliente.Text := '';
+  edtCidade.Text := '';
+  edtUF.Text := '';
+  edtCodProduto.Text := '';
+  edtDescProduto.Text := '';
+  edtQuantidade.Text := '';
+  edtValorUnit.Text := '';
+  RecalcularTotalPedido;
+  lblTotalPedido.Caption := '';
 end;
 
 end.
