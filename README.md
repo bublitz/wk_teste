@@ -292,6 +292,7 @@ O `TDM` lê esse arquivo no método `ConfigurarConexao` e configura o `TFDConnec
    - Criar o banco (`wkteste` ou outro nome)
    - Executar o script `banco/cria.sql` para criação das tabelas
    - Executar o script `banco/popula.sql` para popular clientes e produtos
+   - Opcionalmente, o Dump do banco está na pasta `/banco` do projeto.
 
 2. **Configurar o `config.ini`**:
 
